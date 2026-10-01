@@ -2,7 +2,7 @@ import { useLocation } from "react-router"
 
 const VisualizerId = () => {
     const location = useLocation(); 
-    const [initialImage, name] = location.state || {}; 
+    const {initialImage, name} = location.state || {}; 
 
     return (
         <section>
