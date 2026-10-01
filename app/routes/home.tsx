@@ -31,7 +31,7 @@ export default function Home() {
         }
         const saved = await createProject({item:newItem, visibility:"private"})
         if(!saved) {console.error("failed to create project");  return false}
-        setProject((prev) => [newItem, ...prev])
+        setProject((prev) => [saved, ...prev])
 
         navigate(`/visualizer/${newId}`, {
             state: {
