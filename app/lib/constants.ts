@@ -1,10 +1,10 @@
-export const PUTER_WORKER_URL = "archa";
+export const PUTER_WORKER_URL = "https://archa.puter.work";
 
 // Storage Paths
 export const STORAGE_PATHS = {
-    ROOT: "roomify",
-    SOURCES: "roomify/sources",
-    RENDERS: "roomify/renders",
+    ROOT: "Archa",
+    SOURCES: "Archa/sources",
+    RENDERS: "Archa/renders",
 } as const;
 
 // Timing Constants (in milliseconds)
