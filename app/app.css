@@ -393,10 +393,10 @@
                 }
 
                 .render-overlay {
-                    @apply absolute inset-0 flex flex-col items-center justify-center z-30 bg-zinc-500 backdrop-blur-sm transition-opacity duration-300;
+                    @apply absolute inset-0 flex flex-col items-center justify-center z-30 bg-zinc-500/40 backdrop-blur-sm transition-opacity duration-300;
 
                     .rendering-card {
-                        @apply bg-zinc-600 px-6 py-4 rounded-xl border border-zinc-200 flex flex-col items-center shadow-2xl;
+                        @apply bg-zinc-600/40 px-6 py-4 rounded-xl border border-zinc-200 flex flex-col items-center shadow-2xl;
 
                         .spinner {
                             @apply w-8 h-8 mb-3 animate-spin text-primary;

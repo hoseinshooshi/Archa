@@ -33,6 +33,7 @@ STRICT REQUIREMENTS (do not violate):
 3) **TOP‑DOWN ONLY**: Orthographic top‑down view. No perspective tilt.
 4) **CLEAN, REALISTIC OUTPUT**: Crisp edges, balanced lighting, and realistic materials. No sketch/hand‑drawn look.
 5) **NO EXTRA CONTENT**: Do not add rooms, furniture, or objects that are not clearly indicated by the plan.
+6) **THE BACKGROUND MUST BE BLACK**: return a top‑down 3D architectural render with realistic colors for the render itself but on a black background
 
 STRUCTURE & DETAILS:
 - **Walls**: Extrude precisely from the plan lines. Consistent wall height and thickness.
