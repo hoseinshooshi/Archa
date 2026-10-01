@@ -10,8 +10,8 @@ import { createProject } from "~/lib/puter.action";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Archa" },
+    { name: "description", content: "Visualize Your Projects" },
   ];
 }
 
@@ -102,7 +102,7 @@ export default function Home() {
 
                   <div className="projects-grid">
                       {projects.map(({id, name, timestamp, sourceImage, renderedImage}) => (
-                        <div className="project-card group">
+                        <div key={id} className="project-card group">
                           <div className="preview">
                               <img  src={renderedImage || sourceImage}
                                     alt="Project"
