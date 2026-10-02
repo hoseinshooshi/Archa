@@ -1,4 +1,4 @@
-export const PUTER_WORKER_URL = "https://archa.puter.work";
+export const PUTER_WORKER_URL = import.meta.env.VITE_PUTER_WORKER_URL;
 
 // Storage Paths
 export const STORAGE_PATHS = {

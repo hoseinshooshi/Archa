@@ -1,7 +1,7 @@
 import puter from "@heyputer/puter.js";
-import {  getOrCreateHostingConfig, uploadImageToHosting } from "./puter.hosting";
-import { isHostedUrl } from "./utils";
-import { PUTER_WORKER_URL } from "./constants";
+import {getOrCreateHostingConfig, uploadImageToHosting} from "./puter.hosting";
+import {isHostedUrl} from "./utils";
+import {PUTER_WORKER_URL} from "./constants";
 
 export const signIn = async () => await puter.auth.signIn();
 
@@ -14,6 +14,7 @@ export const getCurrentUser = async () => {
         return null;
     }
 }
+
 export const createProject = async ({ item, visibility = "private" }: CreateProjectParams): Promise<DesignItem | null | undefined> => {
     if(!PUTER_WORKER_URL) {
         console.warn('Missing VITE_PUTER_WORKER_URL; skip history fetch;');
@@ -80,6 +81,7 @@ export const createProject = async ({ item, visibility = "private" }: CreateProj
         return null;
     }
 }
+
 export const getProjects = async () => {
     if(!PUTER_WORKER_URL) {
         console.warn('Missing VITE_PUTER_WORKER_URL; skip history fetch;');
@@ -102,6 +104,7 @@ export const getProjects = async () => {
         return [];
     }
 }
+
 export const getProjectById = async ({ id }: { id: string }) => {
     if (!PUTER_WORKER_URL) {
         console.warn("Missing VITE_PUTER_WORKER_URL; skipping project fetch.");

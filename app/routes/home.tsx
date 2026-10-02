@@ -22,32 +22,38 @@ export default function Home() {
     const isCreatingProjectRef = useRef(false)
     const handleUploadComplete = async (base64Image: string) => {
         try {
-            if(isCreatingProjectRef.current) return false; 
+
+            if(isCreatingProjectRef.current) return false;
             isCreatingProjectRef.current = true;
             const newId = Date.now().toString();
-            const name = `project ${newId}`
+            const name = `Residence ${newId}`;
+
             const newItem = {
-                id: newId, 
-                name, 
-                sourceImage: base64Image, 
-                renderedImage: undefined, 
+                id: newId, name, sourceImage: base64Image,
+                renderedImage: undefined,
                 timestamp: Date.now()
             }
-            const saved = await createProject({item:newItem, visibility:"private"})
-            if(!saved) {console.error("failed to create project");  return false}
-            setProject((prev) => [saved, ...prev])
+
+            const saved = await createProject({ item: newItem, visibility: 'private' });
+
+            if(!saved) {
+                console.error("Failed to create project");
+                return false;
+            }
+
+            setProject((prev) => [saved, ...prev]);
 
             navigate(`/visualizer/${newId}`, {
                 state: {
-                    initialImage: saved.sourceImage, 
-                    initialRender: saved.renderedImage || null, 
+                    initialImage: saved.sourceImage,
+                    initialRendered: saved.renderedImage || null,
                     name
                 }
             });
 
             return true;
         } finally {
-            isCreatingProjectRef.current=false; 
+            isCreatingProjectRef.current = false;
         }
     }
     useEffect(()=>{
