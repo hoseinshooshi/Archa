@@ -32,9 +32,7 @@ const Navbar = () => {
             <span className="name">Archa</span>
           </div>
           <ul className="links">
-            <a href="#">1st link</a>
-            <a href="#">2st link</a>
-            <a href="#">3st link</a>
+            <strong className="text-primary">"</strong>WORKS WITH VPN<strong className="text-primary"></strong>
           </ul>
         </div>
         <div className="actions">
