@@ -4,9 +4,9 @@ import {ArrowRight, ArrowUpRight, Clock, Layers} from "lucide-react";
 import Button from "../components/ui/Button";
 import Upload from "../components/Upload";
 import {useNavigate} from "react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { timeStamp } from "console";
-import { createProject } from "~/lib/puter.action";
+import { createProject, getProjects } from "~/lib/puter.action";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -16,33 +16,48 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+
     const navigate = useNavigate();
     const [projects, setProject] = useState<DesignItem[]>([])
-
+    const isCreatingProjectRef = useRef(false)
     const handleUploadComplete = async (base64Image: string) => {
-        const newId = Date.now().toString();
-        const name = `project ${newId}`
-        const newItem = {
-            id: newId, 
-            name, 
-            sourceImage: base64Image, 
-            renderedImage: undefined, 
-            timestamp: Date.now()
-        }
-        const saved = await createProject({item:newItem, visibility:"private"})
-        if(!saved) {console.error("failed to create project");  return false}
-        setProject((prev) => [saved, ...prev])
-
-        navigate(`/visualizer/${newId}`, {
-            state: {
-                initialImage: saved.sourceImage, 
-                initialRender: saved.renderedImage || null, 
-                name
+        try {
+            if(!isCreatingProjectRef.current) return false; 
+            isCreatingProjectRef.current = true;
+            const newId = Date.now().toString();
+            const name = `project ${newId}`
+            const newItem = {
+                id: newId, 
+                name, 
+                sourceImage: base64Image, 
+                renderedImage: undefined, 
+                timestamp: Date.now()
             }
-        });
+            const saved = await createProject({item:newItem, visibility:"private"})
+            if(!saved) {console.error("failed to create project");  return false}
+            setProject((prev) => [saved, ...prev])
 
-        return true;
+            navigate(`/visualizer/${newId}`, {
+                state: {
+                    initialImage: saved.sourceImage, 
+                    initialRender: saved.renderedImage || null, 
+                    name
+                }
+            });
+
+            return true;
+        } finally {
+            isCreatingProjectRef.current=false; 
+        }
     }
+    useEffect(()=>{
+        const fetchProjects = async () => 
+            {
+                const items = await getProjects()
+                setProject(items)
+            }
+        fetchProjects()
+    }, [])
 
   return (
       <div className="home">
